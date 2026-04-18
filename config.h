@@ -1,12 +1,13 @@
 /* See LICENSE file for copyright and license details. */
+#include <X11/XF86keysym.h>
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 5;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "monospace:size=8" };
+static const char dmenufont[]       = "monospace:size=8";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -15,7 +16,7 @@ static const char col_cyan[]        = "#005577";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeSel]  = { col_gray4, col_gray1,  col_cyan  },
 };
 
 /* tagging */
@@ -91,6 +92,8 @@ static const Key keys[] = {
 	{ MODKEY|ControlMask,           XK_h,      viewprev,       {0} },
 	{ MODKEY|ShiftMask,             XK_l,      tagtonext,      {0} },
 	{ MODKEY|ShiftMask,             XK_h,      tagtoprev,      {0} },
+	{ MODKEY,                       XK_F4,     spawn,          SHCMD("brightnessctl set 1%- && pkill -RTMIN+1 dwmblocks") },
+	{ MODKEY,                       XK_F5,     spawn,          SHCMD("brightnessctl set +1% && pkill -RTMIN+1 dwmblocks") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
